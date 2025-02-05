@@ -1,2 +1,2 @@
-# bdrelacionales
-Base de datos relacionales
+# Diaz Gastelum Victor Manuel 
+4AVP
