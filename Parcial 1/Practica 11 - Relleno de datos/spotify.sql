@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2025 a las 02:02:56
+-- Tiempo de generación: 08-03-2025 a las 01:09:50
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -257,6 +257,16 @@ CREATE TABLE `playlist` (
   `publico` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `playlist`
+--
+
+INSERT INTO `playlist` (`id`, `nombre`, `usuario_id`, `duracion`, `totalcanciones`, `descripcion`, `publico`) VALUES
+(1, 'Favoritas', 6, '18:45:20', 121, 'Canciones favoritas', 1),
+(2, 'Jpop tumbados', 4, '01:45:20', 21, 'Tumbados\r\n', 1),
+(3, 'Vocaloid', 3, '02:48:32', 32, 'Diferentes canciones de Vocaloid', 1),
+(4, 'Dolido', 5, '10:42:02', 81, 'Canciones para corazones rotos', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -269,6 +279,32 @@ CREATE TABLE `playlistcanciones` (
   `canciones_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `playlistcanciones`
+--
+
+INSERT INTO `playlistcanciones` (`id`, `playlist_id`, `canciones_id`, `usuario_id`) VALUES
+(1, 3, 46, 3),
+(2, 3, 45, 3),
+(3, 3, 3, 3),
+(4, 3, 44, 3),
+(5, 3, 35, 3),
+(6, 3, 36, 3),
+(7, 3, 42, 3),
+(8, 3, 8, 3),
+(9, 3, 18, 3),
+(10, 2, 8, 4),
+(11, 2, 50, 4),
+(12, 2, 47, 4),
+(13, 1, 14, 6),
+(14, 1, 17, 6),
+(15, 1, 3, 6),
+(16, 1, 43, 6),
+(17, 1, 5, 6),
+(18, 1, 20, 6),
+(19, 1, 28, 6),
+(20, 1, 33, 6);
 
 -- --------------------------------------------------------
 
@@ -407,13 +443,13 @@ ALTER TABLE `membresias`
 -- AUTO_INCREMENT de la tabla `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `playlistcanciones`
 --
 ALTER TABLE `playlistcanciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -444,6 +480,12 @@ ALTER TABLE `canciones`
 ALTER TABLE `favoritos`
   ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`cancion_id`) REFERENCES `canciones` (`id`),
   ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `playlist`
+--
+ALTER TABLE `playlist`
+  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `playlistcanciones`
